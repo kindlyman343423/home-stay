@@ -1,2 +1,25 @@
-body {
-  color: pink; }
+.navbar {
+  padding: 20px;
+  margin-bottom: 40px;
+  background-color: #20232a; }
+  .navbar .bwm-search {
+    height: 50px;
+    width: 300px !important; }
+  .navbar .navbar-brand {
+    margin-right: 30px;
+    font-size: 27px;
+    letter-spacing: 1px;
+    color: #61dafb;
+    font-weight: 500; }
+  .navbar .nav-item {
+    font-size: 14px; }
+  .navbar .btn-bwm-search {
+    border-color: #61dafb;
+    color: #61dafb; }
+    .navbar .btn-bwm-search:hover, .navbar .btn-bwm-search:focus, .navbar .btn-bwm-search:active {
+      background-color: transparent;
+      border-color: #61dafb !important;
+      color: #61dafb !important;
+      box-shadow: none; }
+  .navbar .nav-item {
+    color: #ededed; }
