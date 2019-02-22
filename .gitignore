@@ -20,3 +20,6 @@ server/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore all css files
+/src/**/*.css
