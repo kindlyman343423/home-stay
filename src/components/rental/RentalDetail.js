@@ -4,11 +4,7 @@ class RentalDetail extends Component {
   render() {
     return (
       <div>
-        <h2>What up I'm detail page</h2>
-        <h2>What up I'm detail page</h2>
-        <h2>What up I'm detail page</h2>
-        <h2>What up I'm detail page</h2>
-        <h2>What up I'm detail page</h2>
+        <h2>What up I'm detail page {this.props.match.params.id} </h2>
       </div>
     );
   }

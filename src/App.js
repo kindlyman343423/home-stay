@@ -4,7 +4,7 @@ import Header from "./shared/Header";
 import RentalList from "./components/rental/RentalList";
 import RentalDetail from "./components/rental/RentalDetail";
 
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -13,8 +13,15 @@ class App extends Component {
         <div className="App">
           <Header />
           <div className="container">
-            <Route exact path="/rentals" component={RentalList}/>
-            <Route exact path="/rentals/:id" component={RentalDetail}/>
+            <Route
+              exact
+              path="/"
+              render={() =>(
+                 <Redirect to="/rentals" />
+              )}
+            />
+            <Route exact path="/rentals" component={RentalList} />
+            <Route exact path="/rentals/:id" component={RentalDetail} />
           </div>
         </div>
       </BrowserRouter>
