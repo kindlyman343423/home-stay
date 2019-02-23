@@ -9,9 +9,7 @@ class RentalList extends Component {
 
  renderRental = () =>{
   return this.state.rentals.map(rental => (
-   <React.Fragment key={rental}>
-    <RentalCard />
-   </React.Fragment>
+    <RentalCard key={rental}/>
   ))
  }
 
