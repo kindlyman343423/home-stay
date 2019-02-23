@@ -13,8 +13,8 @@ class App extends Component {
         <div className="App">
           <Header />
           <div className="container">
-            <Route exact path="/" component={RentalList}/>
-            <Route exact path="/detail" component={RentalDetail}/>
+            <Route exact path="/rentals" component={RentalList}/>
+            <Route exact path="/rentals/:id" component={RentalDetail}/>
           </div>
         </div>
       </BrowserRouter>
