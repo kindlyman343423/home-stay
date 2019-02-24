@@ -1,3 +1,5 @@
+import { FETCH_RENTALS } from "./types";
+
 const rentals = [
   {
     id: 1,
@@ -55,7 +57,7 @@ const rentals = [
 
 export const fetchRentals = () => {
   return {
-    type: "FETCH_RENTALS",
+    type: FETCH_RENTALS,
     rentals
   };
 };
