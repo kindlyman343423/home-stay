@@ -11,12 +11,12 @@ class RentalDetail extends Component {
   }
 
   render() {
-    console.log(this.props)
+    const {rental} = this.props;
     return (
       <div>
-        <h2>{this.props.rental.title}</h2>
-        <h2>{this.props.rental.city}</h2>
-        <h2>{this.props.rental.description}</h2>
+        <h2>{rental.title}</h2>
+        <h2>{rental.city}</h2>
+        <h2>{rental.description}</h2>
       </div>
     );
   }
