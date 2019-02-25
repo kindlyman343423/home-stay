@@ -6,7 +6,7 @@ import {
 
 const rentals = [
   {
-    id: 1,
+    id: "1",
     title: "Central Apartment",
     city: "New York",
     street: "Times Sqaure",
@@ -19,7 +19,7 @@ const rentals = [
     createdAt: "24/12/2017"
   },
   {
-    id: 2,
+    id: "2",
     title: "Central Apartment 2",
     city: "San Francisco",
     street: "Main street",
@@ -32,7 +32,7 @@ const rentals = [
     createdAt: "24/12/2017"
   },
   {
-    id: 3,
+    id: "3",
     title: "Central Apartment 3",
     city: "Bratislava",
     street: "Hlavna",
@@ -45,7 +45,7 @@ const rentals = [
     createdAt: "24/12/2017"
   },
   {
-    id: 4,
+    id: "4",
     title: "Central Apartment 4",
     city: "Berlin",
     street: "Haupt strasse",
@@ -83,7 +83,7 @@ export const getRentalById = rentalId => {
   return function(dispatch) {
     dispatch(fetchRentalById_INIT());
     setTimeout(() => {
-      let rental = rentals.find(rental => rental.id == rentalId);
+      let rental = rentals.find(rental => rental.id === rentalId);
       dispatch(fetchRentalById(rental));
     }, 1000);
   };
