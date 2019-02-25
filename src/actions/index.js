@@ -63,7 +63,15 @@ export const fetchRentals = () => {
 };
 
 export const getRentalById = rentalId => {
-  const rental = rentals.find(rental => rental.id == rentalId);
+  return function(dispatch){
+    setTimeout(() => {
+      let rental = rentals.find(rental => rental.id == rentalId);
+      dispatch(fetchRentalById(rental));
+    }, 1000);
+  }
+};
+
+const fetchRentalById = rental => {
   return {
     type: FETCH_RENTAL_BYID,
     rental

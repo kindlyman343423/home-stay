@@ -1,10 +1,11 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 
 function Header() {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container">
-        <a className="navbar-brand" href="">NepStay</a>
+        <Link className="navbar-brand" to="/">NepStay</Link>
         <form className="form-inline my-2 my-lg-0">
           <input className="form-control mr-sm-2 bwm-search" type="search" placeholder="Try 'New Baneshwor'" aria-label="Search"></input>
           <button className="btn btn-outline-success my-2 my-sm-0 btn-bwm-search" type="submit">Search</button>

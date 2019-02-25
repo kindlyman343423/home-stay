@@ -5,6 +5,12 @@
    margin-bottom: 20px;
  }
 
+ .rental-detail-link{
+   &:hover{
+     text-decoration: none;
+   }
+ }
+
  /* SINGLE CARD STYLES*/
  .bwm-card {
    border: none;
@@ -17,12 +23,12 @@
        font-weight: 500;
        font-size: 12px;
        text-transform: uppercase;
-       color: #16861a;
      }
 
      .card-title {
        font-size: 19px;
        margin: 3px 0;
+       color: $main-text-gray-color;
      }
 
      .card-text {

@@ -12,13 +12,13 @@ class RentalDetail extends Component {
 
   render() {
     const {rental} = this.props;
-    return (
+    return rental.id ? (
       <div>
         <h2>{rental.title}</h2>
         <h2>{rental.city}</h2>
         <h2>{rental.description}</h2>
       </div>
-    );
+    ) : <h2>Loading...</h2>;
   }
 }
 
