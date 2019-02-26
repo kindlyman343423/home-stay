@@ -2,11 +2,16 @@ const express    = require('express');
 const app        = express();
 const mongoose   = require('mongoose')
 const {dbURI}    = require('./config/keys');
-const PORT       = 5000;
+const PORT       = 3001;
+const FakeDb = require('./models/fakeDb');
 
 mongoose
     .connect(dbURI, { useNewUrlParser: true })
-    .then(() => { console.log('Successfully connected to the database') })
+    .then(() => {
+      console.log('Successfully connected to the database');
+      const fakeDb = new FakeDb();
+      fakeDb.seedDb();
+    })
     .catch(err => console.log(err))
 
 app.use('/', require('./routes'))
