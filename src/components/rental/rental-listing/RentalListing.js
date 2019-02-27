@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 class RentalListing extends Component {
 
   componentDidMount() {
-    this.props.dispatch(actions.fetchRentals());
+    this.props.dispatch(actions.getRentals());
   }
 
   render() {

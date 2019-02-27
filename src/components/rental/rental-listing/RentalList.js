@@ -4,7 +4,7 @@ import { RentalCard } from "./RentalCard";
 class RentalList extends Component {
   renderRental = () => {
     return this.props.rentals.map(rental => (
-      <RentalCard rental={rental} key={rental.id} />
+      <RentalCard rental={rental} key={rental._id} />
     ));
   };
 

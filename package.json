@@ -2,6 +2,11 @@
   "name": "react-starter-bwm",
   "version": "0.1.0",
   "private": true,
+  "proxy":{
+    "api/*": {
+      "target": "http://localhost:3001"
+    }
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
@@ -18,6 +23,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "server": "cd server && nodemon",
     "build-css": "node-sass-chokidar ./src -o ./src",
     "watch-css": "npm run build-css && node-sass-chokidar ./src -o ./src --watch --recursive --use-polling --polling-interval 1000",
     "start-js": "react-scripts start",
