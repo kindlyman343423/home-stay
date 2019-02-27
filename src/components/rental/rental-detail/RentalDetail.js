@@ -12,7 +12,7 @@ class RentalDetail extends Component {
 
   render() {
     const {rental} = this.props;
-    return rental.id ? (
+    return rental._id ? (
       <div>
         <h2>{rental.title}</h2>
         <h2>{rental.city}</h2>

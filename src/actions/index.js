@@ -5,7 +5,7 @@ import {
 } from "./types";
 import axios from "axios";
 
-export const fetchRentals = (rentals) => {
+export const fetchRentals = rentals => {
   return {
     type: FETCH_RENTALS,
     rentals
@@ -27,19 +27,23 @@ const fetchRentalById = rental => {
 
 export const getRentals = () => {
   return function(dispatch) {
-    axios.get("/api/rentals").then(rentals => {
-      console.log(rentals)
-      dispatch(fetchRentals(rentals.data));
-    });
+    axios
+      .get("/api/rentals")
+      .then(res => res.data)
+      .then(rentals => {
+        return dispatch(fetchRentals(rentals));
+      });
   };
 };
 
 export const getRentalById = rentalId => {
   return function(dispatch) {
     dispatch(fetchRentalById_INIT());
-    // setTimeout(() => {
-    //   let rental = rentals.find(rental => rental.id === rentalId);
-    //   dispatch(fetchRentalById(rental));
-    // }, 1000);
+    axios
+      .get(`/api/rentals/${rentalId}`)
+      .then(res => res.data)
+      .then(rental => {
+        return dispatch(fetchRentalById(rental));
+      });
   };
 };
