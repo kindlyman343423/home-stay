@@ -14,7 +14,7 @@ mongoose
     })
     .catch(err => console.log(err))
 
-app.use('/', require('./routes'))
+app.use('/api/rentals', require('./routes'))
 
 //Server start
 app.listen(PORT, () => {

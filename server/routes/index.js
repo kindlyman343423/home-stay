@@ -1,6 +1,7 @@
 const Router = require('express').Router();
-const {test} = require('../controllers/test');
+const rentalController = require('../controllers/rentalController');
 
-Router.get('/test', test);
+Router.get('/', rentalController.getAllRentals);
+Router.get('/:id', rentalController.getRentalById);
 
 module.exports = Router;
