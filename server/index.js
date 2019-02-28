@@ -5,6 +5,8 @@ const { dbURI } = require("./config/keys");
 const PORT = 3001;
 const FakeDb = require("./models/fakeDb");
 
+app.use(express.json());
+
 mongoose
   .connect(dbURI, { useNewUrlParser: true })
   .then(() => {
@@ -14,7 +16,8 @@ mongoose
   })
   .catch(err => console.log(err));
 
-app.use("/api/rentals", require("./routes"));
+  app.use("/api/rentals", require("./routes/rentalRoutes"));
+  app.use("/api/users", require("./routes/userRoutes"));
 
 //Server start
 app.listen(PORT, () => {
