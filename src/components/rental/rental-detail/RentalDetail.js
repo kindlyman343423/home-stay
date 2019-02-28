@@ -9,14 +9,14 @@ import MapWithAMarker from "../../map";
 
 class RentalDetail extends Component {
   state = {
-    mapcity: ""
+    mapcity: "kathmandu"
   }
   componentDidMount() {
     const rentalId = this.props.match.params.id;
     this.props.dispatch(actions.getRentalById(rentalId));
 
     //Making city name locatable on map
-    setTimeout(()=>{this.setState({mapcity: this.props.rental.city.replace(" ", "%20")}) }, 1000)
+    setTimeout(()=>{this.setState({mapcity: this.props.rental.city.replace(" ", "%20")}) }, 3000)
   }
 
   render() {
@@ -35,7 +35,7 @@ class RentalDetail extends Component {
                 containerElement={<div style={{ height: `350px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
               /> } */}
-              {this.state.mapcity && <div className="mapouter"><div className="gmap_canvas"><iframe width="600" height="350" id="gmap_canvas" src={`https://maps.google.com/maps?q=${this.state.mapcity}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe></div> </div>}
+               <div className="mapouter"><div className="gmap_canvas"><iframe width="600" height="350" id="gmap_canvas" src={`https://maps.google.com/maps?q=${this.state.mapcity}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe></div> </div>
             </div>
           </div>
         </div>
