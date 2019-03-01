@@ -1,21 +1,57 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { secretKey } = require("../config/keys");
 
-exports.loginUser = (req, res) => {
-  res.json("Login User");
+exports.loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password)
+      return res
+        .status(422)
+        .json({
+          errors: [
+            { title: "Data missing!", detail: "Provide email or password" }
+          ]
+        });
+
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) return res.status(400).json("No user found");
+
+    const isAuth = await bcrypt.compare(req.body.password, user.password);
+
+    if (!isAuth) return res.status(400).json("Password did not match");
+
+    const payload = {
+      id: user.id,
+      username: user.username,
+      isAdmin: user.isAdmin
+    };
+
+    console.log(payload, secretKey)
+
+    jwt.sign(payload, secretKey, (err, token) => {
+      res.json({
+        success: true,
+        token: token
+      });
+    });
+  } catch (err) {
+    console.log(err)
+    res.status(500).json("Something happened...")
+  }
 };
 
 exports.registerUser = async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
   try {
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({
-          errors: [
-            { title: "Data missing", detail: "Provide email and password" }
-          ]
-        });
+      return res.status(400).json({
+        errors: [
+          { title: "Data missing", detail: "Provide email and password" }
+        ]
+      });
     }
     const user = await User.findOne({ email });
     if (user) {
@@ -40,7 +76,7 @@ exports.registerUser = async (req, res) => {
       email: newuser.email,
       username: newuser.username
     });
-  }catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   }
 };

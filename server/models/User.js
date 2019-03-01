@@ -27,7 +27,12 @@ const UserSchema = new Schema({
     max: [32, "Too long ,maximum characters required is 32"]
   },
 
-  rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }]
+  rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
+
+  isAdmin:{
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = mongoose.model("User", UserSchema);

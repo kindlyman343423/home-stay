@@ -8,6 +8,7 @@ const FakeDb = require("./models/fakeDb");
 app.use(express.json());
 
 mongoose
+  .set("useCreateIndex", true)
   .connect(dbURI, { useNewUrlParser: true })
   .then(() => {
     console.log("Successfully connected to the database");
@@ -16,8 +17,8 @@ mongoose
   })
   .catch(err => console.log(err));
 
-  app.use("/api/rentals", require("./routes/rentalRoutes"));
-  app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/rentals", require("./routes/rentalRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
 
 //Server start
 app.listen(PORT, () => {
