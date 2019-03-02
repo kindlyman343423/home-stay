@@ -14,8 +14,7 @@ class Register extends Component {
             <div className="col-md-6 ml-auto">
               <div className="image-container">
                 <h2 className="catchphrase">
-                  As our member you have access to most awesome places in the
-                  world.
+                  As our member you have access to most awesome places in Nepal.
                 </h2>
                 <img src="" alt="" />
               </div>
