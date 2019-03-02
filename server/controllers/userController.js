@@ -19,8 +19,6 @@ exports.loginUser = async (req, res) => {
 
     const isAuth = user.isSamePassword(password);
 
-    console.log(isAuth)
-
     if (!isAuth) return res.status(400).json("Password did not match");
 
     const payload = {
@@ -28,8 +26,6 @@ exports.loginUser = async (req, res) => {
       username: user.username,
       isAdmin: user.isAdmin
     };
-
-    console.log(payload, secretKey);
 
     jwt.sign(payload, secretKey, (err, token) => {
       res.json({
@@ -90,7 +86,6 @@ exports.authMiddleware = async (req, res, next) => {
 
       if (founduser) {
         res.locals.user = user;
-        console.log(res.locals);
         next();
       }
     } else {
