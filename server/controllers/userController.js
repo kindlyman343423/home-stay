@@ -17,7 +17,9 @@ exports.loginUser = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(400).json("No user found");
 
-    const isAuth = await bcrypt.compare(req.body.password, user.password);
+    const isAuth = user.isSamePassword(password);
+
+    console.log(isAuth)
 
     if (!isAuth) return res.status(400).json("Password did not match");
 
@@ -65,9 +67,7 @@ exports.registerUser = async (req, res) => {
       email,
       password
     });
-
-    const salt = await bcrypt.genSalt(10);
-    newuser.password = await bcrypt.hash(newuser.password, salt);
+    
     await newuser.save();
 
     res.status(201).json({
