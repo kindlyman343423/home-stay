@@ -11,7 +11,7 @@ mongoose
   .set("useCreateIndex", true)
   .connect(dbURI, { useNewUrlParser: true })
   .then(() => {
-    console.log("Successfully connected to the database");
+    console.log("connected...");
     const fakeDb = new FakeDb();
     fakeDb.seedDb();
   })

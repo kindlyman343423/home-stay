@@ -94,7 +94,7 @@ exports.authMiddleware = async (req, res, next) => {
         next();
       }
     } else {
-      res.status(422).json("Not authorized");
+      res.status(401).json("Not authorized");
     }
   } catch (err) {
     res.status(500).json(err);
