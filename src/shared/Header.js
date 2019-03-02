@@ -15,8 +15,8 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ml-auto">
-            <a className="nav-item nav-link active" href="">Login <span className="sr-only">(current)</span></a>
-            <a className="nav-item nav-link" href="">Register</a>
+            <Link className="nav-item nav-link active" to="/login">Login <span className="sr-only">(current)</span></Link>
+            <Link className="nav-item nav-link" to="/register">Register</Link>
           </div>
         </div>
       </div>

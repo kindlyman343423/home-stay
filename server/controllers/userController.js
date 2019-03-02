@@ -87,7 +87,7 @@ exports.authMiddleware = async (req, res, next) => {
       if (founduser) {
         res.locals.user = user;
         next();
-      }
+      } else res.status(401).json("Not authorized");
     } else {
       res.status(401).json("Not authorized");
     }
