@@ -8,13 +8,11 @@ exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password)
-      return res
-        .status(422)
-        .json({
-          errors: [
-            { title: "Data missing!", detail: "Provide email or password" }
-          ]
-        });
+      return res.status(422).json({
+        errors: [
+          { title: "Data missing!", detail: "Provide email or password" }
+        ]
+      });
 
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(400).json("No user found");
@@ -29,7 +27,7 @@ exports.loginUser = async (req, res) => {
       isAdmin: user.isAdmin
     };
 
-    console.log(payload, secretKey)
+    console.log(payload, secretKey);
 
     jwt.sign(payload, secretKey, (err, token) => {
       res.json({
@@ -38,8 +36,8 @@ exports.loginUser = async (req, res) => {
       });
     });
   } catch (err) {
-    console.log(err)
-    res.status(500).json("Something happened...")
+    console.log(err);
+    res.status(500).json("Something happened...");
   }
 };
 
@@ -80,3 +78,29 @@ exports.registerUser = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+exports.authMiddleware = async (req, res, next) => {
+  const token = req.headers.authorization;
+
+  try {
+    if (token) {
+      const user = parseToken(token);
+
+      const founduser = await User.findById(user.id);
+
+      if (founduser) {
+        res.locals.user = user;
+        console.log(res.locals);
+        next();
+      }
+    } else {
+      res.status(422).json("Not authorized");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+function parseToken(token) {
+  return jwt.verify(token.split(" ")[1], secretKey);
+}
