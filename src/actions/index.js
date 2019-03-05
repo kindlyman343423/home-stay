@@ -4,6 +4,7 @@ import {
   FETCH_RENTAL_BYID_INIT
 } from "./types";
 import axios from "axios";
+import { baseUrlRemote, baseUrlLocal } from "../helpers";
 
 export const fetchRentals = rentals => {
   return {
@@ -28,7 +29,7 @@ const fetchRentalById = rental => {
 export const getRentals = () => {
   return function(dispatch) {
     axios
-      .get("/api/rentals")
+      .get(baseUrlLocal+"/api/rentals")
       .then(res => res.data)
       .then(rentals => {
         return dispatch(fetchRentals(rentals));
@@ -40,10 +41,22 @@ export const getRentalById = rentalId => {
   return function(dispatch) {
     dispatch(fetchRentalById_INIT());
     axios
-      .get(`/api/rentals/${rentalId}`)
+      .get(baseUrlLocal+`/api/rentals/${rentalId}`)
       .then(res => res.data)
       .then(rental => {
         return dispatch(fetchRentalById(rental));
       });
   };
 };
+
+// Auth actions-------------------------
+
+export const registerUser = userData =>{
+  return axios.post(baseUrlLocal+"/api/users/register", userData)
+    .then(resp =>{
+      return resp.data
+    })
+    .catch(err =>{
+      Promise.reject(err.response.data)
+    })
+}
