@@ -1,9 +1,17 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import renderField from "../../shared/FormField";
+import FormError from "../../shared/FormError";
 
 const RegisterForm = props => {
-  const { handleSubmit, pristine, submitting, registerUser, valid } = props;
+  const {
+    handleSubmit,
+    pristine,
+    submitting,
+    registerUser,
+    valid,
+    errors
+  } = props;
   return (
     <form onSubmit={handleSubmit(registerUser)}>
       <Field
@@ -46,7 +54,6 @@ const RegisterForm = props => {
         label="Confirm Password"
       />
 
-      <div>
         <button
           className="btn btn-bwm btn-form"
           type="submit"
@@ -54,7 +61,7 @@ const RegisterForm = props => {
         >
           Submit
         </button>
-      </div>
+      {errors.length > 0 && <FormError errors={errors}/>}
     </form>
   );
 };

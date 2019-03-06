@@ -4,13 +4,19 @@ import RegisterForm from "./RegisterForm";
 import * as actions from "../../actions";
 
 class Register extends Component {
+  state = {
+    errors: []
+  }
+
   registerUser = value => {
     actions
       .registerUser(value)
       .then(resp => {
         console.log(resp);
-      })
-      .catch(err => console.log("Err", err));
+      },
+        (errors) => {
+          this.setState({errors})
+        })
   };
   render() {
     return (
@@ -19,7 +25,7 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-5">
               <h1>Register</h1>
-              <RegisterForm registerUser={this.registerUser} />
+              <RegisterForm registerUser={this.registerUser} errors={this.state.errors}/>
             </div>
             <div className="col-md-6 ml-auto">
               <div className="image-container">

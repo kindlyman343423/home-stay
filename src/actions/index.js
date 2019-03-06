@@ -55,8 +55,10 @@ export const registerUser = userData =>{
   return axios.post(baseUrlLocal+"/api/users/register", userData)
     .then(resp =>{
       return resp.data
-    })
-    .catch(err =>{
-      Promise.reject(err.response.data)
-    })
+    },
+    (err) =>{
+      console.log(err)
+       return Promise.reject(err.response.data)
+      }
+    )
 }
