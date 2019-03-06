@@ -3,23 +3,28 @@ import RegisterForm from "./RegisterForm";
 
 import * as actions from "../../actions";
 
+import { Redirect } from "react-router-dom";
+
 class Register extends Component {
   state = {
-    errors: []
+    errors: [],
+    redirect: false
   };
 
   registerUser = value => {
     actions
       .registerUser(value)
       .then(resp => {
-        console.log(resp);
+        this.setState({ redirect: true });
       })
       .catch(errors => {
         this.setState({ errors });
       });
   };
   render() {
-    return (
+    return this.state.redirect ? (
+      <Redirect to={{ pathname: "/login", state: { successRegister: true } }} />
+    ) : (
       <section id="register">
         <div className="bwm-form">
           <div className="row">
