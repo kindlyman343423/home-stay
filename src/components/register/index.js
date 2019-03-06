@@ -6,17 +6,17 @@ import * as actions from "../../actions";
 class Register extends Component {
   state = {
     errors: []
-  }
+  };
 
   registerUser = value => {
     actions
       .registerUser(value)
       .then(resp => {
         console.log(resp);
-      },
-        (errors) => {
-          this.setState({errors})
-        })
+      })
+      .catch(errors => {
+        this.setState({ errors });
+      });
   };
   render() {
     return (
@@ -25,7 +25,10 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-5">
               <h1>Register</h1>
-              <RegisterForm registerUser={this.registerUser} errors={this.state.errors}/>
+              <RegisterForm
+                registerUser={this.registerUser}
+                errors={this.state.errors}
+              />
             </div>
             <div className="col-md-6 ml-auto">
               <div className="image-container">

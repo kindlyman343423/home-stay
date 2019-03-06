@@ -29,7 +29,7 @@ const fetchRentalById = rental => {
 export const getRentals = () => {
   return function(dispatch) {
     axios
-      .get(baseUrlLocal+"/api/rentals")
+      .get(baseUrlLocal + "/api/rentals")
       .then(res => res.data)
       .then(rentals => {
         return dispatch(fetchRentals(rentals));
@@ -41,7 +41,7 @@ export const getRentalById = rentalId => {
   return function(dispatch) {
     dispatch(fetchRentalById_INIT());
     axios
-      .get(baseUrlLocal+`/api/rentals/${rentalId}`)
+      .get(baseUrlLocal + `/api/rentals/${rentalId}`)
       .then(res => res.data)
       .then(rental => {
         return dispatch(fetchRentalById(rental));
@@ -51,14 +51,14 @@ export const getRentalById = rentalId => {
 
 // Auth actions-------------------------
 
-export const registerUser = userData =>{
-  return axios.post(baseUrlLocal+"/api/users/register", userData)
-    .then(resp =>{
-      return resp.data
-    },
-    (err) =>{
-      console.log(err)
-       return Promise.reject(err.response.data)
-      }
-    )
-}
+export const registerUser = userData => {
+  return axios
+    .post(baseUrlLocal + "/api/users/register", userData)
+    .then(resp => {
+      return resp.data;
+    })
+    .catch(err => {
+      console.log(err);
+      return Promise.reject(err.response.data);
+    });
+};
