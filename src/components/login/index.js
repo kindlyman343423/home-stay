@@ -1,32 +1,28 @@
 import React, { Component } from "react";
 import LoginForm from "./LoginForm";
 
-import* as actions from '../../actions';
+import * as actions from "../../actions";
+
+import { connect } from "react-redux";
 
 class Login extends Component {
 
-  state = {
-    auth: false,
-    errors: []
-  }
-
-  loginUser = (values) =>{
-    actions.loginUser(values)
-      .then(resp => {
-        this.setState({auth: true})
-      })
-      .catch(errors => this.setState({errors}))
-  }
+  loginUser = values => {
+    this.props.dispatch(actions.loginUser(values));
+  };
 
   render() {
-    console.log(this.state)
+    console.log(this.props);
     return (
       <section id="login">
         <div className="bwm-form">
           <div className="row">
             <div className="col-md-5">
               <h1>Login</h1>
-              <LoginForm loginUser={this.loginUser} errors={this.state.errors}/>
+              <LoginForm
+                loginUser={this.loginUser}
+                errors={this.props.auth.errors}
+              />
             </div>
             <div className="col-md-6 ml-auto">
               <div className="image-container">
@@ -43,4 +39,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps)(Login);
