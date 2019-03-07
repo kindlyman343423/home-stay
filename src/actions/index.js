@@ -62,3 +62,15 @@ export const registerUser = userData => {
       return Promise.reject(err.response.data);
     });
 };
+
+export const loginUser = userData => {
+  return axios
+    .post(baseUrlLocal + "/api/users/auth", userData)
+    .then(resp => {
+      return resp.data
+    })
+    .catch(err => {
+      console.log(err);
+      return Promise.reject(err.response.data);
+    })
+}

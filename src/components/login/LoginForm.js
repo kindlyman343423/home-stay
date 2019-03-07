@@ -9,6 +9,7 @@ const LoginForm = props => {
     pristine,
     submitting,
     loginUser,
+    errors
   } = props;
   return (
     <form onSubmit={handleSubmit(loginUser)}>
@@ -40,6 +41,7 @@ const LoginForm = props => {
         >
           Submit
         </button>
+        {errors.length > 0 && <FormError errors={errors}/>}
     </form>
   );
 };
