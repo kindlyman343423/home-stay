@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import renderField from "../../shared/FormField";
 import FormError from "../../shared/FormError";
 
-const RegisterForm = props => {
+const LoginForm = props => {
   const {
     handleSubmit,
     pristine,
@@ -45,5 +45,5 @@ const RegisterForm = props => {
 };
 
 export default reduxForm({
-  form: "registerForm"
-})(RegisterForm);
+  form: "loginForm"
+})(LoginForm);
