@@ -17,7 +17,7 @@ class AuthService {
 
   isAuthenticated() {
     const token = this.getToken();
-    return token && this.isValid(token) ? true : false;
+    return (token && this.isValid(token)) ? true : false;
   }
 }
 

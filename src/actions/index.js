@@ -7,6 +7,7 @@ import {
 } from "./types";
 import axios from "axios";
 import { baseUrlRemote, baseUrlLocal } from "../helpers";
+import authService from "../services/auth-service";
 
 export const fetchRentals = rentals => {
   return {
@@ -93,3 +94,11 @@ export const loginUser = userData => {
       });
   };
 };
+
+export const checkAuth = () =>{
+  return dispatch =>{
+    if(authService.isAuthenticated()){
+      dispatch(loginSuccess())
+    }
+  }
+}

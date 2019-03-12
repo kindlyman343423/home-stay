@@ -27,7 +27,7 @@ exports.loginUser = async (req, res) => {
       isAdmin: user.isAdmin
     };
 
-    jwt.sign(payload, secretKey, (err, token) => {
+    jwt.sign(payload, secretKey, {expiresIn:"1h"}, (err, token) => {
       res.json({
         success: true,
         token: token
