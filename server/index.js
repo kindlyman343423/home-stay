@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const { dbURI } = require("./config/keys");
 const PORT = 3001;
 const FakeDb = require("./models/fakeDb");
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(express.json());
 
