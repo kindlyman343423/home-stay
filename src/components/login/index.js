@@ -15,8 +15,12 @@ class Login extends Component {
 
   render() {
     const {isAuth, errors} = this.props.auth;
+
+    const {successRegister} = this.props.location.state || false;
+
     return isAuth ? <Redirect to="/rentals"/> : (
       <section id="login">
+      {successRegister && <div className="alert alert-success">Registration Success!</div>}
         <div className="bwm-form">
           <div className="row">
             <div className="col-md-5">

@@ -3,7 +3,8 @@ import {
   FETCH_RENTAL_BYID,
   FETCH_RENTAL_BYID_INIT,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAILURE
+  LOGIN_USER_FAILURE,
+  LOGOUT
 } from "./types";
 import axios from "axios";
 import { baseUrlRemote, baseUrlLocal } from "../helpers";
@@ -100,5 +101,12 @@ export const checkAuth = () =>{
     if(authService.isAuthenticated()){
       dispatch(loginSuccess())
     }
+  }
+}
+
+export const logout = () =>{
+  authService.logout()
+  return {
+    type: LOGOUT
   }
 }

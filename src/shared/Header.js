@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 
-function Header() {
+function Header(props) {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container">
@@ -17,6 +17,7 @@ function Header() {
           <div className="navbar-nav ml-auto">
             <Link className="nav-item nav-link active" to="/login">Login <span className="sr-only">(current)</span></Link>
             <Link className="nav-item nav-link" to="/register">Register</Link>
+            <p className="nav-item nav-link" onClick={props.logout}>Logout</p>
           </div>
         </div>
       </div>
