@@ -5,6 +5,8 @@ import * as actions from "../../actions";
 
 import { connect } from "react-redux";
 
+import {Redirect} from 'react-router-dom';
+
 class Login extends Component {
 
   loginUser = values => {
@@ -12,8 +14,8 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props);
-    return (
+    const {isAuth, errors} = this.props.auth;
+    return isAuth ? <Redirect to="/rentals"/> : (
       <section id="login">
         <div className="bwm-form">
           <div className="row">
@@ -21,7 +23,7 @@ class Login extends Component {
               <h1>Login</h1>
               <LoginForm
                 loginUser={this.loginUser}
-                errors={this.props.auth.errors}
+                errors={errors}
               />
             </div>
             <div className="col-md-6 ml-auto">
