@@ -3,6 +3,13 @@
  margin-bottom: 40px;
  background-color: $main-color-black;
 
+.clickable {
+  color: $main-color-white !important;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
  .bwm-search {
    height: 50px;
    width: 300px !important;
