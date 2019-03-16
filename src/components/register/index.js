@@ -40,7 +40,7 @@ class Register extends Component {
                 <h2 className="catchphrase">
                   As our member you have access to most awesome places in Nepal.
                 </h2>
-                <img src="" alt="" />
+                <img src={process.env.PUBLIC_URL + '/images/register-image.jpg'} alt="" />                
               </div>
             </div>
           </div>

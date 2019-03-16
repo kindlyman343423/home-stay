@@ -16,7 +16,6 @@ const RegisterForm = props => {
     <form onSubmit={handleSubmit(registerUser)}>
       <Field
         name="username"
-        component="input"
         type="text"
         placeholder="Username"
         className="form-control"
@@ -26,7 +25,6 @@ const RegisterForm = props => {
 
       <Field
         name="email"
-        component="input"
         type="email"
         placeholder="Email"
         className="form-control"
@@ -36,7 +34,6 @@ const RegisterForm = props => {
 
       <Field
         name="password"
-        component="input"
         type="password"
         placeholder="Password"
         className="form-control"
@@ -46,7 +43,6 @@ const RegisterForm = props => {
 
       <Field
         name="confirmPassword"
-        component="input"
         type="password"
         placeholder="Confirm Password"
         className="form-control"

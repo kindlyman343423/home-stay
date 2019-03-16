@@ -31,4 +31,4 @@ class AxiosService {
 
 }
 
-export default new AxiosService;
+export default new AxiosService();
