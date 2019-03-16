@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Header extends Component {
+  handleLogout = () => {
+    this.props.logout();
+    this.props.history.push("/rentals");
+  };
+
   renderLinks = () => {
     return !this.props.auth.isAuth ? (
       <div className="navbar-nav ml-auto">
@@ -15,7 +20,7 @@ class Header extends Component {
       </div>
     ) : (
       <div className="navbar-nav ml-auto">
-        <a className="nav-item nav-link clickable" onClick={this.props.logout}>
+        <a className="nav-item nav-link clickable" onClick={this.handleLogout}>
           Logout
         </a>
       </div>
@@ -68,4 +73,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
