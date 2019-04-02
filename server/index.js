@@ -16,12 +16,13 @@ mongoose
   .then(() => {
     console.log("connected...");
     const fakeDb = new FakeDb();
-    fakeDb.seedDb();
+    // fakeDb.seedDb();
   })
   .catch(err => console.log(err));
 
 app.use("/api/rentals", require("./routes/rentalRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/bookings", require("./routes/bookingRoutes"));
 
 //Server start
 app.listen(PORT, () => {
