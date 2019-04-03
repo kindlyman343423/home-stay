@@ -49,9 +49,12 @@ exports.PostBooking = async (req, res) => {
 };
 
 const validBooking = (proposedBooking, rental) => {
- console.log(rental.bookings, proposedBooking)
+  let isValid = true;
+  if(moment(proposedBooking.startAt) > moment(proposedBooking.endAt)){
+    isValid = false;
+  }
   if (rental.bookings && rental.bookings.length > 0) {
-    rental.bookings.every(booking => {
+   isValid = rental.bookings.every(booking => {
       const proposedStart = moment(proposedBooking.startAt);
       const proposedEnd = moment(proposedBooking.endAt);
 
@@ -73,5 +76,5 @@ const validBooking = (proposedBooking, rental) => {
      
     });
   }
-  return true;
+  return isValid;
 };
