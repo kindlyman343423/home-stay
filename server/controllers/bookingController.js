@@ -1,5 +1,6 @@
 const Booking = require("../models/Booking");
 const Rental = require("../models/Rental");
+const User = require("../models/User");
 const moment = require("moment");
 
 exports.PostBooking = async (req, res) => {
@@ -35,13 +36,19 @@ exports.PostBooking = async (req, res) => {
       });
     }
 
+
+    booking.user = user.id;
+    booking.rental = foundrental;
     foundrental.bookings.push(booking);
+    booking.save();
+    
     foundrental.save();
-    await booking.save();
+
+    User.update({_id: user.id}, {$push: {bookings: booking}})
 
     res
       .status(200)
-      .json({ title: "Created booking", desc: booking });
+      .json({ title: "Created booking", desc: {startAt: booking.startAt, endAt:  booking.endAt} });
   } catch (err) {
     console.log(err);
     res.status(500).json({ title: "Error", desc: err });
